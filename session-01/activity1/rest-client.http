@@ -1,0 +1,7 @@
+### Get request using explicit query parameters
+GET http://127.0.0.1:5000/
+    ?date=2026-01-21
+    &start_date=
+    &end_date=
+    &count=
+Accept: application/json
