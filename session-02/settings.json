@@ -1,0 +1,47 @@
+{
+  // Define the profile for Windows
+  "terminal.integrated.profiles.windows": {
+    "PowerShell": {
+      "source": "PowerShell",
+      "icon": "terminal-powershell"
+    },
+    "Command Prompt": {
+      "path": [
+        "${env:windir}\\Sysnative\\cmd.exe",
+        "${env:windir}\\System32\\cmd.exe"
+      ],
+      "args": [],
+      "icon": "terminal-cmd"
+    },
+    "Laragon Git Bash": {
+      "path": "C:\\ProgramData\\Laragon\\bin\\git\\bin\\bash.exe",
+      "args": ["--login", "-i"],
+      "icon": "github",
+      "color": "terminal.ansiMagenta"
+    }
+  },
+
+  // Set it as the default on Windows
+  "terminal.integrated.defaultProfile.windows": "Laragon Git Bash",
+
+  // (Optional) Disable the automatic shell detection if it interferes
+  "terminal.integrated.useWslProfiles": false,
+
+  "terminal.integrated.cwd": "C:\\ProgramData\\Laragon\\www\\sources\\repos",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.minimap.renderCharacters": false,
+  "editor.minimap.enabled": false,
+  "explorer.confirmDragAndDrop": false,
+  "chat.instructionsFilesLocations": {
+    ".github/instructions": true,
+    "C:\\Users\\5003670\\AppData\\Local\\Temp\\postman-collections-post-response.instructions.md": true,
+    "C:\\Users\\5003670\\AppData\\Local\\Temp\\postman-collections-pre-request.instructions.md": true,
+    "C:\\Users\\5003670\\AppData\\Local\\Temp\\postman-folder-post-response.instructions.md": true,
+    "C:\\Users\\5003670\\AppData\\Local\\Temp\\postman-folder-pre-request.instructions.md": true,
+    "C:\\Users\\5003670\\AppData\\Local\\Temp\\postman-http-request-post-response.instructions.md": true,
+    "C:\\Users\\5003670\\AppData\\Local\\Temp\\postman-http-request-pre-request.instructions.md": true
+  },
+  "chat.mcp.gallery.enabled": true,
+  "terminal.integrated.automationProfile.osx": null
+}
