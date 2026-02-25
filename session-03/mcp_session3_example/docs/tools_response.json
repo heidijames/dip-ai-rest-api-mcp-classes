@@ -49,4 +49,7 @@
       }
     ]
   }
-}
+},
+
+
+{"jsonrpc":"2.0","id":1,"result":{"protocolVersion":"2025-06-18","capabilities":{"experimental":{},"prompts":{"listChanged":true},"resources":{"subscribe":false,"listChanged":true},"tools":{"listChanged":true},"extensions":{"io.modelcontextprotocol/ui":{}}},"serverInfo":{"name":"Unit Converter API with MCP","version":"3.0.0"},"instructions":"Unit conversion tools with supporting resources and prompts."}}

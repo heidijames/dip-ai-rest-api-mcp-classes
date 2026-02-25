@@ -4,7 +4,7 @@ Hands-on material for showing students how FastAPI endpoints become MCP tools, p
 
 ## What’s here
 
-- `calculator_api_tutorial.py` – builds the FastAPI app, wraps it with FastMCP, mounts MCP HTTP/SSE endpoints, registers resources and prompts, and starts uvicorn.
+- `converter_api_tutorial.py` – builds the FastAPI app, wraps it with FastMCP, mounts MCP HTTP/SSE endpoints, registers resources and prompts, and starts uvicorn.
 - `converter_tools.py` – conversion logic plus FastAPI routes (these routes become MCP tools automatically).
 - `converter_resources.py` / `converter_prompts.py` – resource content and prompt templates that are registered with FastMCP.
 - `requirements.txt` – Python dependencies.
@@ -31,9 +31,9 @@ python -m pip install -r requirements.txt
 
 ```bash
 # start the server
-python calculator_api_tutorial.py
+python converter_api_tutorial.py
 # or
-python -m calculator_api_tutorial
+python -m converter_api_tutorial
 
 ```
 
@@ -102,7 +102,7 @@ Each endpoint returns JSON like `{ "result": <number>, "operation": "..." }` or 
      "servers": {
        "UnitConverter": {
          "command": "python",
-         "args": ["calculator_api_tutorial.py"]
+         "args": ["converter_api_tutorial.py"]
        }
      }
    }
@@ -126,6 +126,13 @@ npx @modelcontextprotocol/inspector@latest -e DUMMY=1  --url http://localhost:80
 
 # If env error appears
 npx @modelcontextprotocol/inspector@latest -e DUMMY=1 --url http://localhost:8003/mcp --transport streamable-http
+
+# To run the STDIO server only
+# If venv is ".venv", change to .\.venv\Scripts\python.exe
+npx @modelcontextprotocol/inspector python converter_stdio_server.py
+
+# TODO Still to be tested on TAFE computers
+# npx @modelcontextprotocol/inspector -- `./.venv/Scripts/python.exe -m debugpy --listen 5678 --wait-for-client `converter_stdio_server.py
 ```
 
 - UI runs on localhost:5173 by default.
@@ -138,7 +145,7 @@ Hands-on material for showing students how FastAPI endpoints become MCP tools, p
 
 ## What’s here
 
-- `calculator_api_tutorial.py` – builds the FastAPI app, wraps it with FastMCP, mounts MCP HTTP/SSE endpoints, registers resources and prompts, and starts uvicorn.
+- `converter_api_tutorial.py` – builds the FastAPI app, wraps it with FastMCP, mounts MCP HTTP/SSE endpoints, registers resources and prompts, and starts uvicorn.
 - `converter_tools.py` – conversion logic plus FastAPI routes (these routes become MCP tools automatically).
 - `converter_resources.py` / `converter_prompts.py` – resource content and prompt templates that are registered with FastMCP.
 - `requirements.txt` – Python dependencies.
@@ -161,7 +168,7 @@ pip install -r requirements.txt
 ## Run the HTTP + MCP server
 
 ```bash
-python calculator_api_tutorial.py
+python converter_api_tutorial.py
 ```
 
 You’ll see:
@@ -199,7 +206,7 @@ Each endpoint returns JSON like `{ "result": <number>, "operation": "..." }` or 
      "servers": {
        "UnitConverter": {
          "command": "python",
-         "args": ["calculator_api_tutorial.py"]
+         "args": ["converter_api_tutorial.py"]
        }
      }
    }
