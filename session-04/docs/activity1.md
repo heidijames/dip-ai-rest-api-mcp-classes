@@ -65,35 +65,7 @@ MCP STDIO uses **newline‑delimited JSON‑RPC**; you can interact manually to 
 
 > That sequence demonstrates the MCP lifecycle and basic tool invocation.
 
-### Option B — Use **mcptools** (`mcp`) CLI (STDIO‑aware)
-
-`mcp` communicates with MCP servers over **STDIO** and can spawn your server process; it also supports listing tools/resources and invoking tools.
-
-**List tools**:
-
-```powershell
-mcp.exe tools .\venv\Scripts\python.exe converter_stdio_server.py
-```
-
-**Call a tool**:
-
-```powershell
-mcp.exe call miles_to_kilometers --params "{\"miles\": 3.1}" `
-    .\venv\Scripts\python.exe converter_stdio_server.py
-```
-
-**List resources (pretty JSON)**:
-
-```powershell
-mcp.exe resources --format pretty `
-    .\venv\Scripts\python.exe converter_stdio_server.py
-```
-
-> **Why explicit Python path?** STDIO servers are spawned by the client and don’t inherit your shell environment; being explicit avoids path/env ambiguity on Windows.
-
----
-
-## 5. Troubleshooting (Windows)
+3. Troubleshooting (Windows)
 
 - **JSON quoting in PowerShell**: Use escaped double quotes inside the `--params` string, e.g. `"{\"miles\": 3.1}"`.
 - **Inspector fails to run your Python**: Use the full venv path:  
@@ -103,7 +75,7 @@ mcp.exe resources --format pretty `
 
 ---
 
-## 6. Out of class task
+4. Out of class task
 
 - Add a new conversion tool (e.g., meters +
   to/from feet) via `TOOL_DEFINITIONS`; re‑run the activity.

@@ -1,3 +1,13 @@
+{
+  "name": "Python: converter_stdio_server.py",
+  "type": "python",
+  "request": "launch",
+  "program": "${workspaceFolder}/converter_stdio_server.py",
+  "console": "integratedTerminal",
+  "justMyCode": true
+}
+
+// ---- DO NOT USE: example only ----
 // {
 //   "version": "0.2.0",
 //   "configurations": [
@@ -11,12 +21,3 @@
 //     }
 //   ]
 // }
-
-{
-  "name": "Python: converter_stdio_server.py",
-  "type": "python",
-  "request": "launch",
-  "program": "${workspaceFolder}/converter_stdio_server.py",
-  "console": "integratedTerminal",
-  "justMyCode": true
-}
