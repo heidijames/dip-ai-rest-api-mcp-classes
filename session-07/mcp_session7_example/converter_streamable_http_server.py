@@ -4,6 +4,7 @@ from fastapi import FastAPI, APIRouter
 from fastmcp import FastMCP
 
 from mcp_tools.converter_tools import router as converter_router
+from mcp_tools.miles_to_km import router as mile_to_km
 from mcp_resources.converter_resources import unit_reference, troubleshooting_guide
 from mcp_prompts.converter_prompts import explain_conversion_prompt, api_usage_prompt
 
@@ -40,23 +41,24 @@ app = FastAPI(
     version="1.2.1",
 )
 app.include_router(converter_router)
+app.include_router(mile_to_km)
 
 # System health router
 system_router = APIRouter(prefix="", tags=["system"])
 _started_at = time.time()
 
 
-# @system_router.get("/health")
-# def health():
-#     return {
-#         "status": "ok",
-#         "timestamp": datetime.datetime.utcnow().isoformat() + "Z",
-#         "python": platform.python_version(),
-#         "platform": platform.platform(),
-#         "pid": os.getpid(),
-#         "cwd": os.getcwd(),
-#         "uptime_seconds": round(time.time() - _started_at, 2),
-#     }
+@system_router.get("/health")
+def health():
+    return {
+        "status": "ok",
+        "timestamp": datetime.datetime.utcnow().isoformat() + "Z",
+        "python": platform.python_version(),
+        "platform": platform.platform(),
+        "pid": os.getpid(),
+        "cwd": os.getcwd(),
+        "uptime_seconds": round(time.time() - _started_at, 2),
+    }
 
 
 app.include_router(system_router)
