@@ -48,22 +48,22 @@ def kilometers_to_miles_value(kilometers: float) -> float:
     return kilometers * 0.621371
 
 
-def miles_to_kilometers_value(miles: float) -> float:
-    """
-    Convert miles to kilometers, rejecting negative inputs.
+# def miles_to_kilometers_value(miles: float) -> float:
+#     """
+#     Convert miles to kilometers, rejecting negative inputs.
 
-    Args:
-        miles: Distance in miles.
+#     Args:
+#         miles: Distance in miles.
 
-    Returns:
-        The distance in kilometers.
+#     Returns:
+#         The distance in kilometers.
 
-    Raises:
-        ValueError: If a negative distance is provided.
-    """
-    if miles < 0:
-        raise ValueError("Distance cannot be negative")
-    return miles / 0.621371
+#     Raises:
+#         ValueError: If a negative distance is provided.
+#     """
+#     if miles < 0:
+#         raise ValueError("Distance cannot be negative")
+#     return miles / 0.621371
 
 
 # --- FastAPI endpoints -------------------------------------------------------
@@ -113,22 +113,22 @@ def kilometers_to_miles(kilometers: float):
     return {"result": result, "operation": "kilometers_to_miles"}
 
 
-@router.post("/miles-to-kilometers")
-def miles_to_kilometers(miles: float):
-    """
-    HTTP endpoint: convert miles to kilometers with input validation.
+# @router.post("/miles-to-kilometers")
+# def miles_to_kilometers(miles: float):
+#     """
+#     HTTP endpoint: convert miles to kilometers with input validation.
 
-    Args:
-        miles: Distance in miles.
+#     Args:
+#         miles: Distance in miles.
 
-    Returns:
-        JSON dict with the result and operation name, or an error message.
-    """
-    try:
-        result = miles_to_kilometers_value(miles)
-        return {"result": result, "operation": "miles_to_kilometers"}
-    except ValueError as exc:  # Keep HTTP response friendly
-        return {"error": str(exc), "operation": "miles_to_kilometers"}
+#     Returns:
+#         JSON dict with the result and operation name, or an error message.
+#     """
+#     try:
+#         result = miles_to_kilometers_value(miles)
+#         return {"result": result, "operation": "miles_to_kilometers"}
+#     except ValueError as exc:  # Keep HTTP response friendly
+#         return {"error": str(exc), "operation": "miles_to_kilometers"}
 
 
 # --- Metadata for MCP tool registration ----
@@ -152,62 +152,10 @@ TOOL_DEFINITIONS = [
         "func": kilometers_to_miles_value,
         "tags": {"distance", "conversion"},
     },
-    {
-        "name": "miles_to_kilometers",
-        "description": "Convert miles to kilometers (validates non‑negative input)",
-        "func": miles_to_kilometers_value,
-        "tags": {"distance", "conversion"},
-    },
-miles_to_kilometers_tool = {
-    "name": "miles_to_kilometers",
-    "description": "Convert miles to kilometers (validates non-negative input).",
-    "input_schema": {
-        "type": "object",
-        "properties": {
-            "miles": {
-                "type": "number",
-                "minimum": 0,
-                "description": "Distance in miles (>= 0)."
-            }
-        },
-        "required": ["miles"],
-        "additionalProperties": False
-    },
-    "output_schema": {
-        "type": "object",
-        "properties": {
-            "result": {"type": "number", "description": "Kilometers value."},
-            "operation": {"type": "string", "const": "miles_to_kilometers"},
-            "audited_at": {"type": "number", "description": "Unix timestamp (seconds)."}
-        },
-        "required": ["result", "operation", "audited_at"],
-        "additionalProperties": False
-    },
-    "func": miles_to_kilometers_value,  # your callable
-    "tags": {"distance", "conversion"},
-    "meta": {
-        # ---- Permissions & governance (advertised to the MCP host) ----
-        "permissions": {
-            "required_roles":  ["utility.read", "conversion.run"],
-            "required_scopes": ["miles:convert"],
-            "policy": "deny-by-default",
-            "reason": "Conversion tools restricted to authorized users only."
-        },
-        # ---- Safety / side-effects (helps planning & review UIs) ----
-        "side_effects": "none",   # read-only, deterministic mapping
-        "deterministic": True,    # same input -> same output
-        # ---- Rate limiting hints (host or gateway can enforce) ----
-        "rate_limit": {
-            "unit": "minute",
-            "limit": 300,   # per principal (suggested)
-            "burst": 50
-        },
-        # ---- Auditability (names/log keys the host can capture) ----
-        "audit": {
-            "log_fields": ["miles", "result", "operation"],
-            "pii": "none"
-        },
-        # ---- Versioning for change control ----
-        "version": "1.1.0"
-    }
+    # {
+    #     "name": "miles_to_kilometers",
+    #     "description": "Convert miles to kilometers (validates non‑negative input)",
+    #     "func": miles_to_kilometers_value,
+    #     "tags": {"distance", "conversion"},
+    # },
 ]
